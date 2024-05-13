@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: base-mysql    
+    image: mysql:8.0
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456      
+    ports:
+      - 3309:3306
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1024M
+        reservations: 
+          cpus: "0.50"
+          memory: 512M
+              
+volumes:
+  db_data:
+  
